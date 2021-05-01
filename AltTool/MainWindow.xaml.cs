@@ -28,6 +28,7 @@ namespace AltTool
         public static ObservableCollection<ClothData> clothes;
         private static ClothData selectedCloth = null;
         public static ProjectBuild projectBuildWindow = null;
+        private static bool hasChanged = false;
 
         public MainWindow()
         {
@@ -59,11 +60,13 @@ namespace AltTool
         private void AddMaleClothes_Click(object sender, RoutedEventArgs e)
         {
             ProjectController.Instance().AddFiles(Sex.Male);
+            hasChanged = true;
         }
 
         private void AddFemaleClothes_Click(object sender, RoutedEventArgs e)
         {
             ProjectController.Instance().AddFiles(Sex.Female);
+            hasChanged = true;
         }
 
         private void RemoveUnderCursor_Click(object sender, RoutedEventArgs e)
@@ -84,6 +87,7 @@ namespace AltTool
 
                 selectedCloth = null;
                 editGroupBox.Visibility = Visibility.Hidden;
+                hasChanged = true;
             }
         }
 
@@ -91,6 +95,7 @@ namespace AltTool
         {
             if(e.AddedItems.Count > 0)
             {
+                hasChanged = true;
                 selectedCloth = (ClothData)e.AddedItems[0];
 
                 if (selectedCloth != null)
@@ -136,6 +141,7 @@ namespace AltTool
             {
                 selectedCloth.Name = drawableName.Text;
             }
+            hasChanged = true;
         }
 
         private void NewProjectButton_Click(object sender, RoutedEventArgs e)
@@ -276,6 +282,27 @@ namespace AltTool
         {
             if (selectedCloth != null)
                 selectedCloth.pedPropFlags.unkFlag5 = unkFlag1Check.IsChecked.GetValueOrDefault(false);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (hasChanged)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Confirmation", "Do you want to save before exiting?", MessageBoxButton.YesNoCancel);
+                switch(messageBoxResult)
+                {
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Yes:
+                        SaveProjectButton_Click(sender, null);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

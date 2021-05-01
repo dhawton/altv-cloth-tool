@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AltTool"
         xmlns:Properties="clr-namespace:AltTool.Properties" x:Class="AltTool.MainWindow"
+        Closing="Window_Closing"
         mc:Ignorable="d"
         Title="alt:V | Clothes Tool" Height="450" Width="800" Icon="icon_alpha.ico">
     <Grid>

@@ -44,11 +44,11 @@
     </Reference>
     <Reference Include="RageLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\gtautil\gtautil\Libraries\gta-toolkit\RageLib\bin\Debug\RageLib.dll</HintPath>
+      <HintPath>..\Utils\RageLib.dll</HintPath>
     </Reference>
     <Reference Include="RageLib.GTA5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\gtautil\gtautil\Libraries\gta-toolkit\RageLib.GTA5\bin\Debug\RageLib.GTA5.dll</HintPath>
+      <HintPath>..\Utils\RageLib.GTA5.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
