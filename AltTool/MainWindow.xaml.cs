@@ -179,6 +179,8 @@ namespace AltTool
                 {
                     ProjectBuilder.BuildProject(filename);
                 }
+                // We saved, so reset this.
+                hasChanged = false;
             }
         }
 
@@ -288,7 +290,7 @@ namespace AltTool
         {
             if (hasChanged)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Confirmation", "Do you want to save before exiting?", MessageBoxButton.YesNoCancel);
+                MessageBoxResult messageBoxResult = MessageBox.Show("Do you want to save before exiting?", "Exit without saving?", MessageBoxButton.YesNoCancel);
                 switch(messageBoxResult)
                 {
                     case MessageBoxResult.Cancel:
